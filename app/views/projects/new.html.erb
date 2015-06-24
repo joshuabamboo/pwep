@@ -8,5 +8,6 @@
   <%= f.label :total_days, "Estimated Completion" %>
   <%= f.date_field :total_days %>
   <br>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.submit %>
 <% end %>

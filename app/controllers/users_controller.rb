@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+    @user.admin = true if @user.email == "admin@example.com"
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path

@@ -1,5 +1,13 @@
 <% @projects.each do |project| %>
-  <ul>
-    <li> <%= link_to project.title, project %> </li>
-  </ul>
+  <% if current_user.admin? %>
+    <ul>
+      <li> <%= link_to project.title, project %> </li>
+    </ul>
+    <%= link_to "delete", project, method: :delete, data: { confirm: "You sure?" } %>
+  <% elsif current_user.id == project.user_id %>
+    <ul>
+      <li> <%= link_to project.title, project %> </li>
+    </ul>
+  <% end %>
+  
 <% end %>
