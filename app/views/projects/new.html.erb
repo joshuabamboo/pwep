@@ -8,6 +8,13 @@
   <%= f.label :total_days, "Estimated Completion" %>
   <%= f.date_field :total_days %>
   <br>
+
+<!-- Accepts nested attribute for: -->
+  <% f.fields_for :features do |nested_form| %>
+      <%= nested_form.text_field :title %>
+  <% end %>
+  <br>
+
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.submit %>
 <% end %>
