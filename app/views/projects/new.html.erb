@@ -1,0 +1,12 @@
+<%= form_for @project, url: {action: "create"} do |f| %>
+  <%= f.label :title, "Project Title" %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description %>
+  <br>
+  <%= f.label :total_days, "Estimated Completion" %>
+  <%= f.date_field :total_days %>
+  <br>
+  <%= f.submit %>
+<% end %>
