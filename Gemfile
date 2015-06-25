@@ -28,6 +28,8 @@ gem 'pry'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem "simple_calendar", "~> 1.1.0"
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
