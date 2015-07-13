@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
   
+  get 'schedules/new'
+
+  get 'schedules/create'
+
+  get 'schedules/show'
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   get '/signup' => 'users#new'
 
   resources :projects
-  resources :users
+  resources :users do
+    resources :schedules, only: [:show, :new, :create]
+  end
 
   get 'welcome/index'
   root 'welcome#index'

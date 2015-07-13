@@ -1,2 +1,14 @@
 <h1>Flatiron PWEP</h1>
-<%= link_to("Plan A New Project", new_project_path) %>
+<% if !current_user %>
+  <%= link_to("Plan A New Project", new_project_path) %>
+<% elsif current_user.admin? %>
+  <%= link_to("Generate Weekly Standup Schedule", user_schedule_path(current_user.id, 1)) %>
+<% else %>
+  <%= link_to("Plan A New Project", new_project_path) %>
+  <br>
+  <%= link_to("Add A Feature To A Project WIP", new_project_path) %>
+  <br>
+  <%= link_to("Plan A New Blog WIP", new_project_path) %>
+  <br>
+  <%= link_to("Plan A New Lab WIP", new_project_path) %>
+<% end %>

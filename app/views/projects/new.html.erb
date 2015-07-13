@@ -8,6 +8,9 @@
   <%= f.label :starts_at, "Estimated Completion" %>
   <%= f.date_field :starts_at %>
   <br>
+  <%= f.label :repository, "Github Link" %>
+  <%= f.text_field :repository %>
+  <br>
 
 <!-- Accepts nested attribute for: -->
   <% f.fields_for :features do |nested_form| %>
