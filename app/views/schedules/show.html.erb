@@ -1,18 +1,15 @@
-<h1>Schedules</h1>
+<h1>Weekly Standup</h1>
 <%= week_calendar events: @projects do |date, projects| %>
   <%= date %>
 
   <% projects.each do |project| %>
     <div>
-      <%= project.user.name.capitalize %>:
-      <%= project.title %>
-      <%= link_to("Repository", project.link) %>
+      <p>
+        Student: <%= project.user.name.capitalize %> <br>
+        <%= project.type  %> Title: <%= project.title %> <br>
+        Link: <%= link_to("Repository", project.link) %> <br>
+      </p>
     </div>
   <% end %>
 <% end %>
 
-
-<h2>What'd you get done this week?</h2>
-If they accomplished event, mark as complete. If not, reschedule for next week.
-<h2>What will you do next week?</h2>
-I'm thinking the 1-on-1 should be during the friday standup. Create a section for notes.

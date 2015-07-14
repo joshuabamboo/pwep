@@ -1,6 +1,16 @@
+<h1>Start A New App, Lab, or Blog</h1>
 <%= form_for @project, url: {action: "create"} do |f| %>
   <%= f.label :title, "Project Title" %>
   <%= f.text_field :title %>
+  <br>
+  <%= f.label :type, "Web App" %>
+  <%= f.radio_button(:type, "App") %>
+  
+  <%= f.label :type, "Lab" %>
+  <%= f.radio_button(:type, "Lab") %>
+
+  <%= f.label :type, "Blog" %>
+  <%= f.radio_button(:type, "Blog") %>
   <br>
   <%= f.label :description, "Description" %>
   <%= f.text_area :description %>
@@ -8,14 +18,9 @@
   <%= f.label :starts_at, "Estimated Completion" %>
   <%= f.date_field :starts_at %>
   <br>
-  <%= f.label :link, "Github Link" %>
+  <%= f.label :link, "Link" %>
   <%= f.text_field :link %>
   <br>
-
-<!-- Accepts nested attribute for: -->
-  <% f.fields_for :features do |nested_form| %>
-      <%= nested_form.text_field :title %>
-  <% end %>
   <br>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
