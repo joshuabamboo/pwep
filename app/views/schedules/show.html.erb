@@ -1,15 +1,31 @@
 <h1>Weekly Standup</h1>
-<%= week_calendar events: @projects do |date, projects| %>
+
+<%= week_calendar table: {class: "table table-bordered"}, tr: {class: "calendar-row"}, td: {class: "day"}, events: @projects do |date, projects| %>
+
   <%= date %>
 
   <% projects.each do |project| %>
     <div>
       <p>
         Student: <%= project.user.name.capitalize %> <br>
-        <%= project.type  %> Title: <%= project.title %> <br>
-        Link: <%= link_to("Repository", project.link) %> <br>
+        <%= project.project_type  %> Title: <%= project.title %> <br>
+        <%= link_to(project.link, project.link) %> <br>
+        
+        <% if !project.complete %>
+          <%= form_for project do |f| %>
+            <%= f.label :complete, "Complete" %>
+            <%= f.check_box :complete %>
+            <br><br>
+            <%= f.label :starts_at, "Reschedule:" %>
+            <%= f.date_field :starts_at %>
+            <br><br>
+            <%= f.submit %>
+          <% end %>
+        <% else %>
+          Complete
+        <% end %>
+
       </p>
     </div>
   <% end %>
 <% end %>
-

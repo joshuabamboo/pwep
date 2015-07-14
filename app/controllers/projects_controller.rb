@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    binding.pry
   end
 
   def update
@@ -46,7 +47,7 @@ class ProjectsController < ApplicationController
 private
 
   def project_params
-    params.require(:project).permit(:title, :description, :starts_at, :user_id, :link)
+    params.require(:project).permit(:title, :project_type, :description, :starts_at, :user_id, :link, :complete)
   end
 end
 
