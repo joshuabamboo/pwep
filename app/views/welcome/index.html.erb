@@ -2,8 +2,14 @@
 <% if !current_user %>
   <%= link_to("Plan A New Project", new_project_path) %>
 <% elsif current_user.admin? %>
-  <%= link_to("Generate Weekly Standup Schedule", user_schedule_path(current_user.id, 1)) %> <br>
-  <%= link_to("One on One Meeting", user_schedule_path(current_user.id, 1)) %>
+  <%= link_to("Generate Weekly Standup Schedule", user_schedule_path(current_user.id, 1)) %> <br><br>
+  One on One Meeting <br>
+  <% @users.each do |user| %>
+    <%= link_to(user.name.capitalize, user_meetings_path(user.id)) if !user.admin %>
+  <% end %>
+
 <% else %>
   <%= link_to("Plan A New Project", new_project_path) %>
+  <br>
+  Schedule WIP
 <% end %>

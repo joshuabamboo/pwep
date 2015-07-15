@@ -24,7 +24,6 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    binding.pry
   end
 
   def update

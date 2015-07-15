@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  get 'meetings/index'
+
+  get 'meetings/show'
+
+  get 'meetings/create'
+
+  get 'meetings/new'
+
   get 'schedules/new'
 
   get 'schedules/create'
@@ -12,8 +20,10 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
 
   resources :projects
+  resources :notes
   resources :users do
     resources :schedules, only: [:show, :new, :create]
+    resources :meetings, only: [:show, :new, :create, :index]
   end
 
   get 'welcome/index'
