@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :notes
   resources :users do
-    resources :schedules, only: [:show, :new, :create]
+    resources :schedules, only: [:new, :create, :index]
     resources :meetings, only: [:show, :new, :create, :index]
   end
 

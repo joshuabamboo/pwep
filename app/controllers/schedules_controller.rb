@@ -1,11 +1,11 @@
 class SchedulesController < ApplicationController
+  def index
+    @projects = Project.all
+  end
   def new
   end
 
   def create
   end
 
-  def show
-    @projects = Project.all
-  end
 end
