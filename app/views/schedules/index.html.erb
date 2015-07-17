@@ -10,7 +10,7 @@
         <!-- Admin view -->
         <% if current_user.admin? %>
           Student: <%= project.user.name.capitalize %> <br>
-          <%= project.project_type  %> Title: <%= project.title %> <br>
+          <%= link_to("#{project.project_type} Title: #{project.title}", project_path(project.id)) %> <br>
           <%= link_to(project.link, project.link) %> <br>
           
           <% if !project.complete %>
@@ -29,7 +29,7 @@
 
         <!-- Student view -->
         <% elsif project.user.id == current_user.id %>
-          <%= project.project_type  %> Title: <%= project.title %> <br>
+          <%= link_to("#{project.project_type} Title: #{project.title}", project_path(project.id)) %> <br>
           <%= link_to(project.link, project.link) %> <br>
           <% if project.complete %>
             Marked as done by an instructor. Killin' it.
