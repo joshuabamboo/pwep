@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_user
-      redirect_to "https://github.com/login/oauth/authorize?client_id=&scope=repo" if !logged_in?
+      redirect_to "https://github.com/login/oauth/authorize?client_id=b511d53bdb7c15c29bd3&scope=repo" if !logged_in?
     end
     
 end
