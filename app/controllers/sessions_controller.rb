@@ -5,20 +5,29 @@ class SessionsController < ApplicationController
   end
 
   def create
-    response = Faraday.post "https://github.com/login/oauth/access_token", {client_id: ENV["GITHUB_CLIENT"], client_secret: ENV["GITHUB_SECRET"], code: params[:code]}, {'Accept' => 'application/json'}
+
+
     
-    body = JSON.parse(response.body)
-    session[:token] = body["access_token"]
+ 
+    # session[:username] = body["login"]
+    # session[:photo] = body["avatar_url"]
+    # binding.pry
+    # redirect_to root_path if session[:token]
 
-    user_response = Faraday.get "https://api.github.com/user", 
-      {}, 
-      {'Authorization' => "token #{session[:token]}", 
-       'Accept' => 'application/json'}
 
-    body = JSON.parse(user_response.body)
-    session[:username] = body["login"]
-    session[:photo] = body["avatar_url"]
-    redirect_to root_path if session[:token]
+    @user = User.find_or_create_from_auth_hash(auth_hash)
+    # if @user.save
+    #   session[:user_id] = @user.id
+    #   redirect_to root_path
+    # else
+    #   flash[:notice] = "You must be part of the Flatiron School Github organization to use Flatiron Blogger!"
+    #   redirect_to root_path
+    # end
+
+
+
+
+
     # user = User.find_by_email(params[:email])
     # # If the user exists AND the password entered is correct.
     # if user && user.authenticate(params[:password])
@@ -36,4 +45,14 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to '/login'
   end
+
+  private
+    def auth_hash
+      response = Faraday.post "https://github.com/login/oauth/access_token", {client_id: ENV["GITHUB_CLIENT"], client_secret: ENV["GITHUB_SECRET"], code: params[:code]}, {'Accept' => 'application/json'}
+      body = JSON.parse(response.body)
+      session[:token] = body["access_token"]
+
+      user_response = Faraday.get "https://api.github.com/user", {}, {'Authorization' => "token #{session[:token]}", 'Accept' => 'application/json'}
+      JSON.parse(user_response.body)
+    end
 end
