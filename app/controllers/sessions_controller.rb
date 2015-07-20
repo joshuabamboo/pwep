@@ -5,28 +5,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-
-
-    
- 
-    # session[:username] = body["login"]
-    # session[:photo] = body["avatar_url"]
-    # binding.pry
-    # redirect_to root_path if session[:token]
-
-
     @user = User.find_or_create_from_auth_hash(auth_hash)
-    # if @user.save
-    #   session[:user_id] = @user.id
-    #   redirect_to root_path
-    # else
-    #   flash[:notice] = "You must be part of the Flatiron School Github organization to use Flatiron Blogger!"
-    #   redirect_to root_path
-    # end
-
-
-
-
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to root_path
+    else
+      flash[:notice] = "You must be part of the Flatiron School Github organization to use Flatiron Blogger!"
+      redirect_to root_path
+    end
 
     # user = User.find_by_email(params[:email])
     # # If the user exists AND the password entered is correct.
