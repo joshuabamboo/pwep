@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'schedules/show'
 
-  get '/login' => 'sessions#new'
+  get '/login' => 'sessions#create'
   # post '/login' => 'sessions#create'
   get '/auth' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
