@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720222300) do
+ActiveRecord::Schema.define(version: 20150721180028) do
 
   create_table "features", force: :cascade do |t|
     t.string   "title"
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 20150720222300) do
     t.string  "name"
     t.string  "email"
     t.boolean "admin"
-    t.string  "password_digest"
     t.string  "image"
     t.string  "username"
   end

@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # skip_before_action :authenticate_user, only: :create
+  skip_before_action :authenticate_user, only: [:create, :destroy]
 
   def new
   end
@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_or_create_from_auth_hash(auth_hash)
     if @user.save
+      binding.pry
       flash[:notice] = "Signed in"
       session[:user_id] = @user.id
       redirect_to root_path
@@ -30,7 +31,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:token] = nil
-    redirect_to '/login'
+    session[:user_id] = nil
+    redirect_to root_path
   end
 
   private

@@ -2,11 +2,10 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :meetings
   has_many :notes
-  has_secure_password
+  validates_presence_of :name, :email, :username, :id
 
 
   def self.find_or_create_from_auth_hash(auth)
-    binding.pry
     self.where(id: auth["id"]).first_or_initialize.tap do |user|
       user.name = auth["name"]
       user.username = auth["login"]
