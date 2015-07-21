@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
 
   def self.find_or_create_from_auth_hash(auth)
+    binding.pry
     self.where(id: auth["id"]).first_or_initialize.tap do |user|
       user.name = auth["name"]
       user.username = auth["login"]
@@ -16,13 +17,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  private
-    def is_admin?
-      #find out if they are a member of flatiron curriculum
-      if user.email == "admin@example.com"
-        true
-      else
-        false
-      end
+  def is_admin?
+    #find out if they are a member of flatiron curriculum
+    if self.email == "joshuaowens011@gmail.com"
+      true
+    else
+      false
     end
+  end
 end
