@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate_user, only: [:create, :destroy]
 
   def new
+    redirect_to "https://github.com/login/oauth/authorize?client_id=b511d53bdb7c15c29bd3&scope=repo"
   end
 
   def create
@@ -14,18 +15,6 @@ class SessionsController < ApplicationController
       flash[:notice] = "You must be part of the Flatiron School Github organization to use Flatiron Blogger!"
       redirect_to root_path
     end
-
-    # user = User.find_by_email(params[:email])
-    # # If the user exists AND the password entered is correct.
-    # if user && user.authenticate(params[:password])
-    #   # Save the user id inside the browser cookie. This is how we keep the user 
-    #   # logged in when they navigate around our website.
-    #   session[:user_id] = user.id
-      # redirect_to root_path
-    # else
-    # # If user's login doesn't work, send them back to the login form.
-    #   redirect_to '/login'
-    # end
   end
 
   def destroy
