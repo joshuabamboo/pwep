@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_or_create_from_auth_hash(auth_hash)
     if @user.save
-      flash[:notice] = "Signed in"
+      session[:token] = @user.token
       session[:user_id] = @user.id
       redirect_to root_path
     else
@@ -27,9 +27,8 @@ class SessionsController < ApplicationController
     def auth_hash
       response = Faraday.post "https://github.com/login/oauth/access_token", {client_id: ENV["GITHUB_CLIENT"], client_secret: ENV["GITHUB_SECRET"], code: params[:code]}, {'Accept' => 'application/json'}
       body = JSON.parse(response.body)
-      session[:token] = body["access_token"]
 
-      user_response = Faraday.get "https://api.github.com/user", {}, {'Authorization' => "token #{session[:token]}", 'Accept' => 'application/json'}
-      JSON.parse(user_response.body)
+      user_response = Faraday.get "https://api.github.com/user", {}, {'Authorization' => "token #{body["access_token"]}", 'Accept' => 'application/json'}
+      JSON.parse(user_response.body).merge("token" => body["access_token"])
     end
 end

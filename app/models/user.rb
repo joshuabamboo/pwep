@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
       user.username = auth["login"]
       user.email = auth["email"]
       user.image = auth["avatar_url"]
+      user.token = auth["token"]
       user.admin = user.is_admin?
       user.save
     end
