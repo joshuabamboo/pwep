@@ -1,23 +1,28 @@
+
 <% if !current_user %>
-	<%#= link_to("Plan A New Project", new_project_path) %>
+	<div class="main-msg text-center">
+		<p>Be PWEPared</p>
+		<%= link_to('Sign In With Github', login_path, class: "btn btn-info btn-lg") %>
+	</div>
 <% elsif current_user.admin? %>
-	<%= link_to("Generate Weekly Standup Schedule", user_schedules_path(current_user.id)) %> <br><br>
-	One on One Meeting <br>
-	<% @users.each do |user| %>
-		<%= link_to(user.name.capitalize, user_meetings_path(user.id)) if !user.admin %>
-	<% end %>
-
+	<div class="main-msg text-center">
+		<p>Hello, <%= current_user.name %></p>
+		<div class="inline">	
+			<%= link_to("Generate Weekly Standup Schedule", user_schedules_path(current_user.id), class: "btn btn-info btn-lg") %>
+		</div>
+		<div class="inline">
+			<% @users.each do |user| %>
+				<%= link_to(user.name, user_meetings_path(user.id), class: "btn btn-info btn-lg") if !user.admin %>
+			<% end %>
+		</div>
+	</div>
 <% else %>
-	<%= link_to("Plan A New Project", new_project_path) %>
-	<br>
-	<%= link_to("Weekly Schedule", user_schedules_path(current_user.id)) %>
+	<div class="main-msg text-center">
+		<p>Hello, <%= current_user.name %></p>
+		<%= link_to("Plan A New Project", new_project_path, class: "btn btn-info btn-lg") %>
+		<%= link_to("Weekly Schedule", user_schedules_path(current_user.id), class: "btn btn-info btn-lg") %>
+	</div>
 <% end %>
-
-<div class="main-msg text-center">
-	<p>Be PWEPared</p>
-	<%= link_to 'Sign In With Github', login_path, class: "btn btn-info btn-lg" %>
-</div>
-
 <div id="footer">
 	<p class="footer-container">
 		<span class="heart"> Made with <span>&lt;3</span>&nbsp;</span>
