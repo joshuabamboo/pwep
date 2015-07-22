@@ -2,3 +2,12 @@
 <h3>Description:</h3> 
 <p><%= @project.description %></p> 
 <h6>Target deadline: <%= @project.starts_at %></h6> 
+
+<h3>Commits</h3>
+<%= @commits.first.first %>
+
+<% @commits.each do |commit_by_day| %>
+  <% commit_by_day.each do |commit| %>
+    <%= commit.methods.sort %>
+  <% end %>
+<% end %>

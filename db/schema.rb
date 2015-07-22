@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715154447) do
+ActiveRecord::Schema.define(version: 20150721180028) do
 
   create_table "features", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "github_accts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "goals", force: :cascade do |t|
@@ -61,7 +66,8 @@ ActiveRecord::Schema.define(version: 20150715154447) do
     t.string  "name"
     t.string  "email"
     t.boolean "admin"
-    t.string  "password_digest"
+    t.string  "image"
+    t.string  "username"
   end
 
 end
