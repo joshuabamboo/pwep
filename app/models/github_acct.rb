@@ -8,4 +8,8 @@ class GithubAcct < ActiveRecord::Base
   def github_client
     Github.new :oauth_token => ''
   end
+
+  def client(token)
+    
+  end
 end

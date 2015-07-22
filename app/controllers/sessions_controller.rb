@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      flash[:notice] = "You must be part of the Flatiron School Github organization to use Flatiron Blogger!"
+      flash[:notice] = "You must be part of the Flatiron School Github organization to use PWEP"
       redirect_to root_path
     end
   end
