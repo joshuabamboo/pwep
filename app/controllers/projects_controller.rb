@@ -20,7 +20,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @commits = GithubAcct.new.get_commits('joshuabamboo', 'tic-tac-toe-cli')
+    github_acct = GithubAcct.new(current_user.token)
+    @commits = github_acct.get_commits('joshuabamboo', 'tic-tac-toe-cli')
   end
 
   def edit
