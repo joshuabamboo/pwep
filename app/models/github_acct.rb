@@ -8,4 +8,8 @@ class GithubAcct < ActiveRecord::Base
   def github_client
     Github.new :oauth_token => ''
   end
+
+  def client(token)
+    Faraday.get "https://api.github.com/user", {}, {'Authorization' => "token #{session[:token]}", 'Accept' => 'application/json'}
+  end
 end
