@@ -6,7 +6,7 @@ class GithubAcct < ActiveRecord::Base
   end
   
   def get_commits(username, repository)
-    github_client.repos.commits.all  username, repository
+    github_client.repos.commits.all(username, repository)
   end
 
   private
