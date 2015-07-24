@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    github = GithubAcct.new(current_user.token)
+    github = GithubAcct.new(@project.user.token)
     @commits = github.get_commits(@project.user.username, @project.link.match(/\/([^\/]+$)/)[1])
   end
 
