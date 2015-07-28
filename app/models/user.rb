@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :meetings
   has_many :notes
-  validates_presence_of :name, :email, :username, :id
+  validates_presence_of :name, :username, :id
 
 
   def self.find_or_create_from_auth_hash(auth)
