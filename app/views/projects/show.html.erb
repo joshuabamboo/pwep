@@ -11,9 +11,9 @@
       <%= link_to(commit["commit"]["message"], commit["html_url"]) %>
 
       <!-- logic to move -->
-      <% github = Github.new %>
-      <% single_commit = github.repos.commits.get @project.user.username, @project.link.match(/\/([^\/]+$)/)[1], commit["sha"] %>
-      <%= single_commit.stats %>
+      <%# github = Github.new %>
+      <%# single_commit = github.repos.commits.get @project.user.username, @project.link.match(/\/([^\/]+$)/)[1], commit["sha"] %>
+      <%#= single_commit.stats %>
       <!-- end logic -->
       
       <br>

@@ -9,6 +9,7 @@
 <body class="<%= controller.controller_name %>">
 
 <% if current_user %>
+  <%= link_to "Home", '/' %>
   <%= link_to "Logout", '/logout' %>
 <% end %>
 
