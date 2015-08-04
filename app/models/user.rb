@@ -18,11 +18,11 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    #find out if they are a member of flatiron curriculum
-    if self.email == "joshuaowens011@gmail.com"
-      true
-    else
-      false
-    end
+    client.organization_member?('learn-co-curriculum', self.username)
+  end
+
+  private
+  def client
+    Octokit::Client.new(access_token: self.token, client_id: ENV['GITHUB_CLIENT'], client_secret: ENV['GITHUB_SECRET'])
   end
 end

@@ -13,7 +13,6 @@ class GithubAcct < ActiveRecord::Base
     github_client.repos.commits.get(username, repository, sha)
   end
 
-  private
   def github_client
     Github.new :oauth_token => token
   end
