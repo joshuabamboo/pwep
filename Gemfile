@@ -33,6 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "simple_calendar", "~> 1.1.0"
 gem "github_api"
 gem "octokit", "~> 4.0"
+gem 'redcarpet'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

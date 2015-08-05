@@ -4,7 +4,7 @@ class MeetingsController < ApplicationController
     @meetings = Meeting.all
     @note = Note.new
     @notes = Note.where("user_id=? AND author=?", params[:user_id], current_user.id) 
-    @project = Project.new
+    @project = Project.new    
   end
 
   def show

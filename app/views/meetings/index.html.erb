@@ -3,9 +3,9 @@
 <h3>Last Week's Notes:</h3>
 <% @notes.each do |note| %>
   <% if note.created_at.to_date < Time.now.to_date %>
-      <%= note.created_at.time %> --
+      <%= note.created_at.time.strftime("%B %d, %Y") %> --
       <!-- ugly ugly ugly code on the line below -->
-      <%= Meeting.find_author_by_id(note.author).name.capitalize %>: 
+      <%= Meeting.find_author_by_id(note.author).name %>: 
       <%= note.content %>
     <% end %>
     <br>
@@ -16,8 +16,8 @@
 <!-- Display this week's notes -->
   <% @notes.each do |note| %>
     <% if note.created_at.to_date == Time.now.to_date %>
-      <%= note.created_at.time %>:
-      <%= note.content %>
+      <%= note.created_at.time.strftime("%B %d, %Y") %>:
+      <%= note.content.html_safe %>
     <% end %>
     <br>
   <% end %>
