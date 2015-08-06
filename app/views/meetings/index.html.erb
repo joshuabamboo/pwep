@@ -33,7 +33,7 @@
     <br>
     <%= f.hidden_field :user_id, :value => @student.id %>
     <%= f.hidden_field :author, :value => current_user.id %>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-info" %>
   <% end %>
 </div>
 
@@ -63,6 +63,25 @@
   <br>
   <br>
   <%= f.hidden_field :user_id, :value => @student.id %>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-info" %>
 <% end %>
 </div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <input type="checkbox" aria-label="...">
+      </span>
+      <input type="text" class="form-control" aria-label="...">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <input type="radio" aria-label="...">
+      </span>
+      <input type="text" class="form-control" aria-label="...">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
