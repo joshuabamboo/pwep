@@ -1,0 +1,33 @@
+<nav class="nav navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+      <%= link_to 'PWEP', root_path, class: 'navbar-brand' %>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <% if current_user %>
+
+          <li><%= link_to "Home", '/' %></li>
+          <li><%= link_to "Logout", '/logout' %></li>
+
+          <% if current_user.admin %>
+
+            <li><%#= link_to 'Admin Dashboard', cohorts_path %></li>
+            <li><%#= link_to 'All Users', users_path %></li>
+
+          <% end %>
+
+          <li><%#= link_to 'Magazine', posts_path %></li>
+          <li><%#= link_to 'Sign Out', logout_path %></li>
+          
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
