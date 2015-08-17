@@ -1,34 +1,36 @@
 <h1><%= @project.title %></h1> 
 <h3>Description:</h3> 
 <p><%= @project.description %></p> 
-<h6>Target deadline: <%= @project.starts_at %></h6> 
+<h6>Target deadline: <%= @project.starts_at.strftime("%B %d, %Y") %></h6> 
 
-<div>
-  <h3>Commits Since Last Week</h3>
-  <% @commits.each do |commit| %>
-    <% if commit["commit"]["author"]["date"] > Time.now - 604800 %>
-      <%=  Date.parse(commit["commit"]["author"]["date"]).strftime("%B %d, %Y") %>
-      <%= link_to(commit["commit"]["message"], commit["html_url"]) %>
+<% if @commits %>
+  <div>
+    <h3>Commits Since Last Week</h3>
+    <% @commits.each do |commit| %>
+      <% if commit["commit"]["author"]["date"] > Time.now - 604800 %>
+        <%=  Date.parse(commit["commit"]["author"]["date"]).strftime("%B %d, %Y") %>
+        <%= link_to(commit["commit"]["message"], commit["html_url"]) %>
 
-      <!-- logic to move -->
-      <%# github = Github.new %>
-      <%# single_commit = github.repos.commits.get @project.user.username, @project.link.match(/\/([^\/]+$)/)[1], commit["sha"] %>
-      <%#= single_commit.stats %>
-      <!-- end logic -->
-      
-      <br>
+        <!-- logic to move -->
+        <%# github = Github.new %>
+        <%# single_commit = github.repos.commits.get @project.user.username, @project.link.match(/\/([^\/]+$)/)[1], commit["sha"] %>
+        <%#= single_commit.stats %>
+        <!-- end logic -->
+        
+        <br>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
-<div>
-  <h3>Older Commits</h3>
-  <% @commits.each do |commit| %>
-    <% if commit["commit"]["author"]["date"] < Time.now - 604800 %>
-      <%=  Date.parse(commit["commit"]["author"]["date"]).strftime("%B %d, %Y") %>
-      <%= link_to(commit["commit"]["message"], commit["html_url"]) %>
-      <br>
+  <div>
+    <h3>Older Commits</h3>
+    <% @commits.each do |commit| %>
+      <% if commit["commit"]["author"]["date"] < Time.now - 604800 %>
+        <%=  Date.parse(commit["commit"]["author"]["date"]).strftime("%B %d, %Y") %>
+        <%= link_to(commit["commit"]["message"], commit["html_url"]) %>
+        <br>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
