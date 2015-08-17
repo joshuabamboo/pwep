@@ -1,41 +1,43 @@
 <h1>Weekly Standup</h1>
 
-<%= week_calendar table: {class: "table table-bordered"}, tr: {class: "calendar-row"}, td: {class: "day"}, events: @projects do |date, projects| %>
+<div class="calendar-well well">
+  <%= week_calendar table: {class: "table table-bordered"}, tr: {class: "calendar-row"}, td: {class: "day"}, events: @projects do |date, projects| %>
 
-  <%= date %>
+    <%= date.day %>
 
-  <% projects.each do |project| %>
-    <div>
-      <p>
-        <!-- Admin view -->
-        <% if current_user.admin? %>
-          Student: <%= project.user.name.capitalize %> <br>
-          <%= link_to("#{project.project_type} Title: #{project.title}", project_path(project.id)) %> <br>
-          <%= link_to(project.link, project.link) %> <br>
-          
-          <% if !project.complete %>
-            <%= form_for project do |f| %>
-              <%= f.label :complete, "Complete" %>
-              <%= f.check_box :complete %>
-              <br><br>
-              <%= f.label :starts_at, "Reschedule:" %>
-              <%= f.date_field :starts_at %>
-              <br><br>
-              <%= f.submit %>
+    <% projects.each do |project| %>
+      <div class="well calendar-well">
+        <p>
+          <!-- Admin view -->
+          <% if current_user.admin? %>
+            Student: <%= project.user.name %> <br>
+            <%= link_to("#{project.project_type} Title: #{project.title}", project_path(project.id)) %> <br>
+            <%= link_to("Link", project.link) %> <br>
+            
+            <% if !project.complete %>
+              <%= form_for project do |f| %>
+                <%= f.label :complete, "Complete" %>
+                <%= f.check_box :complete %>
+                <br><br>
+                <%= f.label :starts_at, "Reschedule:" %>
+                <%= f.date_field :starts_at %>
+                <br><br>
+                <%= f.submit %>
+              <% end %>
+            <% else %>
+              Complete
             <% end %>
-          <% else %>
-            Complete
-          <% end %>
 
-        <!-- Student view -->
-        <% elsif project.user.id == current_user.id %>
-          <%= link_to("#{project.project_type} Title: #{project.title}", project_path(project.id)) %> <br>
-          <%= link_to(project.link, project.link) %> <br>
-          <% if project.complete %>
-            Marked as done by an instructor. Killin' it.
+          <!-- Student view -->
+          <% elsif project.user.id == current_user.id %>
+            <%= link_to("#{project.project_type} Title: #{project.title}", project_path(project.id)) %> <br>
+            <%= link_to(project.link, project.link) %> <br>
+            <% if project.complete %>
+              Marked as done by an instructor. Killin' it.
+            <% end %>
           <% end %>
-        <% end %>
-      </p>
-    </div>
+        </p>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>

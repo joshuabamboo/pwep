@@ -2,6 +2,7 @@ class SchedulesController < ApplicationController
   def index
     @projects = Project.all
   end
+  
   def new
   end
 

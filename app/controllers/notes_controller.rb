@@ -1,6 +1,5 @@
 class NotesController < ApplicationController
   def create
-    parse(params[:note][:content])
     @note = Note.create(note_params)
     @note.content = parse(params[:note][:content])
     @note.save
