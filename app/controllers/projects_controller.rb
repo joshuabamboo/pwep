@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     github = GithubAcct.new(@project.user.token)
-    if @project.project_type == "lab"
+    if @project.project_type == "App"
       @commits = github.get_commits(@project.user.username, @project.link.match(/\/([^\/]+$)/)[1])
     else
       @commits = false
